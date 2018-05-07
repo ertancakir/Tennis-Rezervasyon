@@ -1,0 +1,236 @@
+{% load staticfiles %}
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tenis Rezervasyon</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{% static 'vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/creative.min.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        {% if user.is_superuser %}
+        <a class="navbar-brand js-scroll-trigger bg-dark" href="/tennis/admin">Admin Panel</a>
+        {% endif %}
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Hakkımızda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#reservation">Rezervasyon</a>
+            </li>
+            {% if user %}
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{user.first_name}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item js-scroll-trigger" href="#reservation">Rezervasyonlarım</a>
+                    <a class="dropdown-item" href="/tennis/logoff/">Çıkış Yap</a>
+              </div>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/tennis/login/">Giriş Yap</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Iletişim</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>Tenis Kortu Rezervasyonu</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#reservation">Rezervasyon Yap</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Anında Rezervasyon</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-diamond text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Kalite</h3>
+              <p class="text-muted mb-0">Kaliteden ödün vermiyoruz.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Ulaşılabilirlik</h3>
+              <p class="text-muted mb-0">7/24 Açığız.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Rezervasyon İmkanı</h3>
+              <p class="text-muted mb-0">Günün her saati rezervasyon imkanı.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-heart text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Müşteri Memnuniyeti</h3>
+              <p class="text-muted mb-0">Sizlerin memnuniyeti bizim için çok önemli.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-dark text-white" id="reservation">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <form method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label >Tarih Seçiniz</label>
+                  <input id="datepicker" type="date" name="bday" max="3000-12-31" min="2018-05-07" class="form-control">
+              </div>
+            </form>
+            <form method="post" action = "/tennis/reservation/">
+              {% csrf_token %}
+              <input type="hidden" id = "dateFormPicker" name = "date">
+              <div class="form-group">
+                <label>Saat Seçiniz</label>
+                  <select class="custom-select" id="timepicker" name ="time">
+
+                  </select>
+              </div>
+              {% if user is None %}
+              <div class="form-group">
+                <label>Ad</label>
+                  <input type="text" name="misafir_ad" tabindex="1" class="form-control" value="">
+              </div>
+              <div class="form-group">
+                <label>Soyad</label>
+                  <input type="text" name="misafir_soyad" tabindex="1" class="form-control" value="">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                  <input type="text" name="misafir_email" tabindex="1" class="form-control" value="">
+              </div>
+              {% endif %}
+              <input type="submit" class="btn btn-success btn-lg" value="Rezervasyon Yap">
+            </form>
+        </div>
+        {% if user %}
+        <div class="col-md-6">
+          <div class="row">
+              <h4>Rezervasyonlarınız</h4>
+              <table class="table table-bordered text-white">
+                <thead>
+                  <tr>
+                    <th>Tarih</th>
+                    <th>Saat</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for r in reservation %}
+                    <tr>
+                      <td>{{r.date}}</td>
+                      <td>{{r.time}}</td>
+                      <td class="text-center"><a href='/tennis/reservation/{{r.Id}}' class="btn btn-danger btn-xs">İptal Et</a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    </section>
+
+    <section class="bg-white text-dark" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">İletişim</h2>
+            <hr class="my-4">
+            <p class="mb-5">Tenis Kortu Rezervasyon Sistemi</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 ml-auto text-center">
+            <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
+            <p>+90 535 234 24 12</p>
+            <p>0(212) 324 13 42</p>
+          </div>
+          <div class="col-lg-4 mr-auto text-center">
+            <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+            <p>
+              <a href="mailto:your-email@your-domain.com">tennis@gmail.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'vendor/scrollreveal/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Custom scripts for this template -->
+    <script src="{% static 'js/creative.js' %}"></script>
+
+  </body>
+
+</html>
+<script src="{% static 'js/reservation.js' %}"></script>

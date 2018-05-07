@@ -1,0 +1,68 @@
+{% load staticfiles %}
+<html lang = "en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Admin Paneli</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link" href="/tennis/admin/" role="tab">Kullanıcılar</a>
+        <a class="nav-link active" href="/tennis/listRes/">Randevular</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-6">
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label >Tarih Seçiniz</label>
+                <input id="datepicker" type="date" name="bday" max="3000-12-31" min="2018-05-07" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <h4>Rezervasyonlar</h4>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Tarih</th>
+                  <th>Saat</th>
+                </tr>
+              </thead>
+              <tbody id = "resTable">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/scrollreveal/scrollreveal.min.js' %}"></script>
+  <script src="{% static 'vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+</body>
+</html>
+<script src="{% static 'js/listRes.js' %}"></script>
